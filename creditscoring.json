@@ -670,7 +670,7 @@
     },
     "/reports": {
       "get": {
-        "summary": "Mendatkan Semua Data Report (Laporan)",
+        "summary": "Mendapatkan Semua Data Report (Laporan)",
         "tags": [],
         "responses": {
           "200": {
