@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "x-stoplight": {
-    "id": "ou735gwnwkapd"
+    "id": "xutkxr5qt20hi"
   },
   "info": {
     "title": "Credit Scoring API",
@@ -37,6 +37,26 @@
                       "x-stoplight": {
                         "id": "7s0mr8aqznvgi"
                       }
+                    },
+                    "result": {
+                      "type": "object",
+                      "x-stoplight": {
+                        "id": "ei059pic3aya6"
+                      },
+                      "properties": {
+                        "nik": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "87u9rw1w4vlsc"
+                          }
+                        },
+                        "nama": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "ptmvx2nporb8i"
+                          }
+                        }
+                      }
                     }
                   }
                 },
@@ -44,7 +64,11 @@
                   "Example 1": {
                     "value": {
                       "error": false,
-                      "message": "Data berhasil ditambahkan"
+                      "message": "Data berhasil ditambahkan",
+                      "result": {
+                        "nik": "000000000000",
+                        "nama": "Ghozali Ghozalu"
+                      }
                     }
                   }
                 }
@@ -52,7 +76,7 @@
             }
           },
           "400": {
-            "description": "Bad Request (Tidak ada file yang diupload / KTP atau Foto belum diupload / Ekstensi gambar tidak valid / Ukuran gambar harus lebih kecil dari 1 MB / Data sudah pernah ditambahkan)",
+            "description": "Bad Request (Tidak ada file yang diupload / KTP atau Foto belum diupload / Ekstensi gambar tidak valid / Ukuran gambar harus lebih kecil dari 1 MB / Data sudah pernah ditambahkan / KTP tidak terbaca)",
             "content": {
               "application/json": {
                 "schema": {
@@ -83,6 +107,38 @@
                     "value": {
                       "error": true,
                       "message": "Data sudah pernah ditambahkan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "27d6029ny21yj"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "wvjthv4bwioaa"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Server Error"
                     }
                   }
                 }
@@ -125,6 +181,168 @@
         }
       }
     },
+    "/identity": {
+      "post": {
+        "summary": "Prediksi AI Identity Scoring",
+        "operationId": "post-identity",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "uhxw8oosnszl2"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "r65j91v1fbdda"
+                      }
+                    },
+                    "result": {
+                      "x-stoplight": {
+                        "id": "ra1y8gnryj5if"
+                      },
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Report",
+                        "x-stoplight": {
+                          "id": "yow3o2wirjm5z"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": false,
+                      "message": "AI Scoring berhasil",
+                      "result": [
+                        {
+                          "no": 1,
+                          "nik": "000000000000",
+                          "nama": "Ghozali Ghozalu",
+                          "jenis_permintaan": "AI Identity Scoring",
+                          "skor": "Sangat Baik"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Jika data belum dipilih / NIK tidak ditemukan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "8eeu1ohjxdi44"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "hetqn12derkao"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Data belum dipilih"
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "error": true,
+                      "message": "Data tidak ditemukan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "nutrk41i5ht0v"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "vn5vjxtpla3hu"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "API untuk memprediksi skor FR berdasarkan identitas (KTP)",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "arrayOfNIK": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "8plmkeltmn6dc"
+                    },
+                    "items": {}
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "arrayOfNIK": [
+                      "312932103291321",
+                      "30120320131023"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
+    },
     "/persons": {
       "get": {
         "summary": "Mendapatkan Semua Data Person",
@@ -147,11 +365,19 @@
                       "x-stoplight": {
                         "id": "1dr8o7ltjhnmo"
                       },
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Person",
-                        "x-stoplight": {
-                          "id": "bybtld25v7v78"
+                      "type": "object",
+                      "properties": {
+                        "persons": {
+                          "x-stoplight": {
+                            "id": "bybtld25v7v78"
+                          },
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Person",
+                            "x-stoplight": {
+                              "id": "tsvpnp2dh7q2s"
+                            }
+                          }
                         }
                       }
                     },
@@ -190,41 +416,75 @@
                   }
                 },
                 "examples": {
-                  "Example 1": {
+                  "Example 2": {
                     "value": {
                       "error": false,
-                      "data": [
-                        {
-                          "nik": "0000000000000",
-                          "createdAt": "12/07/24 16:57:14",
-                          "updatedAt": "12/07/24 16:57:14",
-                          "nama": "Ghozali Ghozalu",
-                          "jenis_kelamin": "LAKI-LAKI",
-                          "alamat": "Jl. Raya",
-                          "tempat_lahir": "JAKARTA",
-                          "tanggal_lahir": "21-12-1990",
-                          "umur": 33,
-                          "gol_darah": "A",
-                          "rt": "2",
-                          "rw": "3",
-                          "kelurahan": "JAGAKARSA",
-                          "kecamatan": "JAGAKARSA",
-                          "agama": "ISLAM",
-                          "status": "BELUM KAWIN",
-                          "pekerjaan": "PELAJAR/MAHASISWA",
-                          "kewarganegaraan": "WNI",
-                          "url_image_ktp": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.JPG",
-                          "url_image_selfie": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.JPG",
-                          "path_image_ktp": "string",
-                          "path_image_selfie": "string"
-                        }
-                      ],
+                      "data": {
+                        "persons": [
+                          {
+                            "nik": "0000000000000",
+                            "createdAt": "12/07/24 16:57:14",
+                            "updatedAt": "12/07/24 16:57:14",
+                            "nama": "Ghozali Ghozalu",
+                            "jenis_kelamin": "LAKI-LAKI",
+                            "alamat": "Jl. Raya",
+                            "tempat_lahir": "JAKARTA",
+                            "tanggal_lahir": "21-12-1990",
+                            "umur": 33,
+                            "gol_darah": "A",
+                            "rt": "2",
+                            "rw": "3",
+                            "kelurahan": "JAGAKARSA",
+                            "kecamatan": "JAGAKARSA",
+                            "agama": "ISLAM",
+                            "status": "BELUM KAWIN",
+                            "pekerjaan": "PELAJAR/MAHASISWA",
+                            "kewarganegaraan": "WNI",
+                            "url_image_ktp": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.JPG",
+                            "url_image_selfie": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.JPG",
+                            "path_image_ktp": "string",
+                            "path_image_selfie": "string"
+                          }
+                        ]
+                      },
                       "page": {
                         "size": 1,
                         "total": 2,
                         "totalPages": 2,
                         "current": 1
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "2xjlvfmhjoa93"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "ae8acmr7hywk7"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Server Error"
                     }
                   }
                 }
@@ -256,7 +516,7 @@
     },
     "/requests": {
       "get": {
-        "summary": "Mendapatkan Semua Data Request",
+        "summary": "Mendapatkan Semua Data Request (Permintaan)",
         "tags": [],
         "responses": {
           "200": {
@@ -273,14 +533,22 @@
                       }
                     },
                     "data": {
-                      "type": "array",
+                      "type": "object",
                       "x-stoplight": {
                         "id": "grhn8qvgkzmvp"
                       },
-                      "items": {
-                        "$ref": "#/components/schemas/Request",
-                        "x-stoplight": {
-                          "id": "36rzgys7dj16h"
+                      "properties": {
+                        "requests": {
+                          "x-stoplight": {
+                            "id": "36rzgys7dj16h"
+                          },
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Request",
+                            "x-stoplight": {
+                              "id": "0p6pkr879qis1"
+                            }
+                          }
                         }
                       }
                     },
@@ -319,24 +587,58 @@
                   }
                 },
                 "examples": {
-                  "Example 1": {
+                  "Example 2": {
                     "value": {
-                      "error": false,
-                      "data": [
-                        {
-                          "no": "00udqw1",
-                          "jenis_permintaan": "AI Identity Scoring",
-                          "jumlah_customer": "2",
-                          "createdAt": "12/07/24 16:57:14",
-                          "finishedAt": "12/07/24 16:57:14"
-                        }
-                      ],
+                      "error": true,
+                      "data": {
+                        "requests": [
+                          {
+                            "no": "00udqw1",
+                            "jenis_permintaan": "AI Identity Scoring",
+                            "jumlah_customer": "2",
+                            "createdAt": "12/07/24 16:57:14",
+                            "finishedAt": "12/07/24 16:57:14"
+                          }
+                        ]
+                      },
                       "page": {
                         "size": 1,
                         "total": 1,
                         "totalPages": 1,
                         "current": 1
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "hkfyz4i80mczx"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "u112dvkbzxzgh"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Server Error"
                     }
                   }
                 }
@@ -365,6 +667,149 @@
           }
         ]
       }
+    },
+    "/reports": {
+      "get": {
+        "summary": "Mendatkan Semua Data Report (Laporan)",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "jxl2hhe8tqbos"
+                      }
+                    },
+                    "data": {
+                      "type": "object",
+                      "x-stoplight": {
+                        "id": "prv6w5hv8atf0"
+                      },
+                      "properties": {
+                        "reports": {
+                          "type": "array",
+                          "x-stoplight": {
+                            "id": "xcpbdtt67poks"
+                          },
+                          "items": {
+                            "$ref": "#/components/schemas/Report",
+                            "x-stoplight": {
+                              "id": "e6n8ngxnorb51"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "page": {
+                      "type": "object",
+                      "x-stoplight": {
+                        "id": "7ldwy1thkj67z"
+                      },
+                      "properties": {
+                        "size": {
+                          "type": "integer",
+                          "x-stoplight": {
+                            "id": "vzwrgoefpa7qx"
+                          }
+                        },
+                        "total": {
+                          "type": "integer",
+                          "x-stoplight": {
+                            "id": "3wiqth76mcalh"
+                          }
+                        },
+                        "totalPages": {
+                          "type": "integer",
+                          "x-stoplight": {
+                            "id": "p8u3jkissutne"
+                          }
+                        },
+                        "current": {
+                          "type": "integer",
+                          "x-stoplight": {
+                            "id": "25bo0vh4niroq"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": false,
+                      "data": {
+                        "reports": [
+                          {
+                            "no": 1,
+                            "nik": "000000000000",
+                            "nama": "Ghozali Ghozalu",
+                            "jenis_permintaan": "AI Identity Scoring",
+                            "skor": "Sangat Baik",
+                            "createdAt": "12/07/24 16:57:14",
+                            "finishedAt": "12/07/24 16:57:14",
+                            "no_permintaan": "00h12e82",
+                            "kendala_proses": "-",
+                            "status": "Selesai",
+                            "pdf": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.pdf"
+                          }
+                        ]
+                      },
+                      "page": {
+                        "size": 1,
+                        "total": 1,
+                        "totalPages": 1,
+                        "current": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-reports",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "size",
+            "description": "Jumlah data yang ditampilkan dalam satu page"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "current",
+            "description": "Page yang dipilih untuk ditampilkan"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "reqId",
+            "description": "Mendapatkan data laporan berdasarkan request id (data permintaan)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "nik",
+            "description": "Mendapatkan data laporan berdasarkan NIK"
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -372,7 +817,7 @@
       "Person": {
         "title": "Person",
         "x-stoplight": {
-          "id": "n8uemrla8s5cc"
+          "id": "t6411525yk123"
         },
         "type": "object",
         "properties": {
@@ -545,7 +990,7 @@
       "Request": {
         "title": "Request",
         "x-stoplight": {
-          "id": "opih922o2dh32"
+          "id": "ps7fgz3z70rnl"
         },
         "type": "object",
         "examples": [
@@ -598,8 +1043,8 @@
           "finishedAt"
         ]
       },
-      "MyRequest": {
-        "title": "MyRequest",
+      "Report": {
+        "title": "Report",
         "x-stoplight": {
           "id": "rso1l6jtjiiq0"
         },
