@@ -16,7 +16,7 @@
   "paths": {
     "/upload": {
       "post": {
-        "summary": "Upload KTP dan Foto Selfie",
+        "summary": "Menambahkan Data Person dengan cara Upload KTP dan Foto Selfie",
         "operationId": "post-upload",
         "responses": {
           "201": {
@@ -76,7 +76,7 @@
             }
           },
           "400": {
-            "description": "Bad Request (Tidak ada file yang diupload / KTP atau Foto belum diupload / Ekstensi gambar tidak valid / Ukuran gambar harus lebih kecil dari 1 MB / Data sudah pernah ditambahkan / KTP tidak terbaca)",
+            "description": "Bad Request (Tidak ada file yang diupload / KTP atau Foto belum diupload)",
             "content": {
               "application/json": {
                 "schema": {
@@ -106,7 +106,109 @@
                   "Example 2": {
                     "value": {
                       "error": true,
+                      "message": "KTP atau Foto belum diupload"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found (\"Gambar tidak ditemukan setelah diupload\")",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "jyfamjjohc5ae"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "pk6xr3sqjircg"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Gambar tidak ditemukan setelah diupload"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict (Data sudah pernah ditambahkan)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "a91mb33tjaoe7"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "epfb4b9xduuhe"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
                       "message": "Data sudah pernah ditambahkan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity (WebDAV) (Ekstensi gambar tidak valid / Ukuran gambar harus lebih kecil dari 1 MB / KTP tidak terbaca)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "ld102u5cw3ewk"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "bo72e8qmk21e3"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Ekstensi gambar tidak valid"
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "error": true,
+                      "message": "Ukuran gambar harus lebih kecil dari 1 MB"
                     }
                   }
                 }
@@ -138,7 +240,7 @@
                   "Example 1": {
                     "value": {
                       "error": true,
-                      "message": "Server Error"
+                      "message": "Internal Server Error"
                     }
                   }
                 }
@@ -240,7 +342,7 @@
             }
           },
           "400": {
-            "description": "Jika data belum dipilih / NIK tidak ditemukan",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -266,8 +368,34 @@
                       "error": true,
                       "message": "Data belum dipilih"
                     }
-                  },
-                  "Example 2": {
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found (NIK tidak ditemukan)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "zvgensckp67om"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "fdyk6p12cjas7"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
                     "value": {
                       "error": true,
                       "message": "Data tidak ditemukan"
@@ -302,7 +430,7 @@
                   "Example 1": {
                     "value": {
                       "error": true,
-                      "message": "Server Error"
+                      "message": "Internal Server Error"
                     }
                   }
                 }
@@ -484,7 +612,7 @@
                   "Example 1": {
                     "value": {
                       "error": true,
-                      "message": "Server Error"
+                      "message": "Internal Server Error"
                     }
                   }
                 }
@@ -638,7 +766,7 @@
                   "Example 1": {
                     "value": {
                       "error": true,
-                      "message": "Server Error"
+                      "message": "Internal Server Error"
                     }
                   }
                 }
@@ -767,6 +895,38 @@
                         "totalPages": 1,
                         "current": 1
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "tvp2nua8j88nu"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "4b428o0a5r80j"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Internal Server Error"
                     }
                   }
                 }
