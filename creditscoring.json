@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "x-stoplight": {
-    "id": "xutkxr5qt20hi"
+    "id": "18stl2tq0rk4l"
   },
   "info": {
     "title": "Credit Scoring API",
@@ -14,276 +14,7 @@
     }
   ],
   "paths": {
-    "/upload": {
-      "post": {
-        "summary": "Menambahkan Data Person dengan cara Upload KTP dan Foto Selfie",
-        "operationId": "post-upload",
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "boolean",
-                      "x-stoplight": {
-                        "id": "s5dvgay375y29"
-                      }
-                    },
-                    "message": {
-                      "type": "string",
-                      "x-stoplight": {
-                        "id": "7s0mr8aqznvgi"
-                      }
-                    },
-                    "result": {
-                      "type": "object",
-                      "x-stoplight": {
-                        "id": "ei059pic3aya6"
-                      },
-                      "properties": {
-                        "nik": {
-                          "type": "string",
-                          "x-stoplight": {
-                            "id": "87u9rw1w4vlsc"
-                          }
-                        },
-                        "nama": {
-                          "type": "string",
-                          "x-stoplight": {
-                            "id": "ptmvx2nporb8i"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "error": false,
-                      "message": "Data berhasil ditambahkan",
-                      "result": {
-                        "nik": "000000000000",
-                        "nama": "Ghozali Ghozalu"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request (Tidak ada file yang diupload / KTP atau Foto belum diupload)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "boolean",
-                      "x-stoplight": {
-                        "id": "vkz2yn04wo8a8"
-                      }
-                    },
-                    "message": {
-                      "type": "string",
-                      "x-stoplight": {
-                        "id": "jzx1j9y2zpt54"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "error": true,
-                      "message": "Tidak ada file yang diupload"
-                    }
-                  },
-                  "Example 2": {
-                    "value": {
-                      "error": true,
-                      "message": "KTP atau Foto belum diupload"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found (\"Gambar tidak ditemukan setelah diupload\")",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "boolean",
-                      "x-stoplight": {
-                        "id": "jyfamjjohc5ae"
-                      }
-                    },
-                    "message": {
-                      "type": "string",
-                      "x-stoplight": {
-                        "id": "pk6xr3sqjircg"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "error": true,
-                      "message": "Gambar tidak ditemukan setelah diupload"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict (Data sudah pernah ditambahkan)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "boolean",
-                      "x-stoplight": {
-                        "id": "a91mb33tjaoe7"
-                      }
-                    },
-                    "message": {
-                      "type": "string",
-                      "x-stoplight": {
-                        "id": "epfb4b9xduuhe"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "error": true,
-                      "message": "Data sudah pernah ditambahkan"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity (WebDAV) (Ekstensi gambar tidak valid / Ukuran gambar harus lebih kecil dari 1 MB / KTP tidak terbaca)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "boolean",
-                      "x-stoplight": {
-                        "id": "ld102u5cw3ewk"
-                      }
-                    },
-                    "message": {
-                      "type": "string",
-                      "x-stoplight": {
-                        "id": "bo72e8qmk21e3"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "error": true,
-                      "message": "Ekstensi gambar tidak valid"
-                    }
-                  },
-                  "Example 2": {
-                    "value": {
-                      "error": true,
-                      "message": "Ukuran gambar harus lebih kecil dari 1 MB"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "boolean",
-                      "x-stoplight": {
-                        "id": "27d6029ny21yj"
-                      }
-                    },
-                    "message": {
-                      "type": "string",
-                      "x-stoplight": {
-                        "id": "wvjthv4bwioaa"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "error": true,
-                      "message": "Internal Server Error"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "API untuk mengupload KTP dan foto selfie",
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "ktp": {
-                    "type": "string",
-                    "x-stoplight": {
-                      "id": "dqkjhkmu66uvp"
-                    }
-                  },
-                  "selfie": {
-                    "type": "string",
-                    "x-stoplight": {
-                      "id": "90a0bvg35kvfe"
-                    }
-                  }
-                }
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "ktp": "ktp.png",
-                    "selfie": "selfie.p"
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
-      }
-    },
-    "/identity": {
+    "/scoring": {
       "post": {
         "summary": "Prediksi AI Identity Scoring",
         "operationId": "post-identity",
@@ -439,7 +170,16 @@
           }
         },
         "description": "API untuk memprediksi skor FR berdasarkan identitas (KTP)",
-        "parameters": [],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "features",
+            "description": "Memilih fitur cek skoring (identity)"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -469,7 +209,8 @@
           },
           "description": ""
         }
-      }
+      },
+      "parameters": []
     },
     "/persons": {
       "get": {
@@ -640,6 +381,278 @@
             "description": "Page yang dipilih untuk ditampilkan"
           }
         ]
+      },
+      "post": {
+        "summary": "Menambahkan Data Person dengan cara Upload KTP dan Foto Selfie",
+        "operationId": "post-persons",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "enhr91cb8oh0j"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "8s2jray2ej5ko"
+                      }
+                    },
+                    "result": {
+                      "type": "object",
+                      "x-stoplight": {
+                        "id": "copccwv7hveei"
+                      },
+                      "properties": {
+                        "nik": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "tkzm2gl2axn7p"
+                          }
+                        },
+                        "nama": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "9gq540yavifjm"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": false,
+                      "message": "Data berhasil ditambahkan",
+                      "result": {
+                        "nik": "000000000000",
+                        "nama": "Ghozali Ghozalu"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request (Tidak ada file yang diupload / KTP atau Foto belum diupload)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "9dzcljq8gw5z9"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "44ltjusfbb05j"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Tidak ada file yang diupload"
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "error": true,
+                      "message": "KTP atau Foto belum diupload"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found (\"Gambar tidak ditemukan setelah diupload\")",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "sgqxqpn0wat1e"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "psnpuvp2atu91"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Gambar tidak ditemukan setelah diupload"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict (Data sudah pernah ditambahkan)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "7va3kvo00mmxy"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "u11nqtehjzieq"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Data sudah pernah ditambahkan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity (WebDAV) (Ekstensi gambar tidak valid / Ukuran gambar harus lebih kecil dari 1 MB / KTP tidak terbaca)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "4ow4x44j4b9n6"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "zehano3wuax7l"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Ekstensi gambar tidak vali"
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "error": true,
+                      "message": "Ukuran gambar harus lebih kecil dari 1 MB"
+                    }
+                  },
+                  "Example 3": {
+                    "value": {
+                      "error": true,
+                      "message": "KTP tidak terbaca"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "a5qiuyd74bt91"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "04jzjuw3vvwir"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ktp": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "xcp89eqmytcad"
+                    }
+                  },
+                  "selfie": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "d3irkdg3nt7xh"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "ktp": "ktp.png",
+                    "selfie": "selfie.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "API untuk mengupload KTP dan foto selfie"
       }
     },
     "/requests": {
@@ -721,7 +734,7 @@
                       "data": {
                         "requests": [
                           {
-                            "no": "00udqw1",
+                            "id": "00udqw1",
                             "jenis_permintaan": "AI Identity Scoring",
                             "jumlah_customer": "2",
                             "createdAt": "12/07/24 16:57:14",
@@ -828,7 +841,7 @@
                           "items": {
                             "$ref": "#/components/schemas/Report",
                             "x-stoplight": {
-                              "id": "e6n8ngxnorb51"
+                              "id": "bfrkw5e3aaryk"
                             }
                           }
                         }
@@ -871,21 +884,22 @@
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "error": false,
+                      "error": true,
                       "data": {
                         "reports": [
                           {
-                            "no": 1,
-                            "nik": "000000000000",
-                            "nama": "Ghozali Ghozalu",
-                            "jenis_permintaan": "AI Identity Scoring",
-                            "skor": "Sangat Baik",
+                            "id": 1,
                             "createdAt": "12/07/24 16:57:14",
                             "finishedAt": "12/07/24 16:57:14",
-                            "no_permintaan": "00h12e82",
                             "kendala_proses": "-",
                             "status": "Selesai",
-                            "pdf": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.pdf"
+                            "pdf": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.pdf",
+                            "skor": "Sangat Baik",
+                            "skor_fr": 0.85,
+                            "skor_ocr": 0.77,
+                            "skor_asid": 0.9,
+                            "nik": "000000000000",
+                            "id_permintaan": "00h12e82"
                           }
                         ]
                       },
@@ -968,7 +982,188 @@
             "name": "nik",
             "description": "Mendapatkan data laporan berdasarkan NIK"
           }
-        ]
+        ],
+        "description": "API untuk mendapatkan semua data laporan"
+      }
+    },
+    "/reports/pdf": {
+      "get": {
+        "summary": "Mendownload Laporan PDF yang dipilih",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK (Mendownload semua file laporan kedalam zip)",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "y5yza975xohjh"
+                      }
+                    },
+                    "": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "gy7nk7z5yzcd3"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-reports-pdf",
+        "description": "API untuk mendownload laporan yang dipilih",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "arrayOfIdReport": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "rvg7h59nak7in"
+                    },
+                    "items": {}
+                  }
+                }
+              },
+              "examples": {
+                "Example 2": {
+                  "value": {
+                    "arrayOfIdReport": [
+                      "1",
+                      "2"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/pdf/:reportId": {
+      "get": {
+        "summary": "Menampilkan Laporan PDF berdasarkan Id Report",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK (Menampilkan laporan PDF di tab baru)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "ttnn68gov1kvu"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "i4023logdlhny"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": false,
+                      "message": "File PDF berhasil ditampilkan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "mwlnglqv9syz6"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "ld0ajzu90k6nd"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Laporan tidak ditemukan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "6fil5m2p0m4av"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "p1p6bv3zms3v2"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-reports-pdf-:reportId",
+        "description": "API untuk menampilkan laporan berdasarkan id laporan"
       }
     }
   },
@@ -977,9 +1172,35 @@
       "Person": {
         "title": "Person",
         "x-stoplight": {
-          "id": "t6411525yk123"
+          "id": "pmcub5q0slt9m"
         },
         "type": "object",
+        "examples": [
+          {
+            "nik": "0000000000000",
+            "createdAt": "12/07/24 16:57:14",
+            "updatedAt": "12/07/24 16:57:14",
+            "nama": "Ghozali Ghozalu",
+            "jenis_kelamin": "LAKI-LAKI",
+            "alamat": "Jl. Raya",
+            "tempat_lahir": "JAKARTA",
+            "tanggal_lahir": "21-12-1990",
+            "umur": 33,
+            "gol_darah": "A",
+            "rt": "2",
+            "rw": "3",
+            "kelurahan": "JAGAKARSA",
+            "kecamatan": "JAGAKARSA",
+            "agama": "ISLAM",
+            "status": "BELUM KAWIN",
+            "pekerjaan": "PELAJAR/MAHASISWA",
+            "kewarganegaraan": "WNI",
+            "url_image_ktp": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.JPG",
+            "url_image_selfie": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.JPG",
+            "path_image_ktp": "string",
+            "path_image_selfie": "string"
+          }
+        ],
         "properties": {
           "nik": {
             "type": "string",
@@ -988,17 +1209,19 @@
             },
             "description": "Unique, Primary Key"
           },
-          "createdAt": {
+          "created_at": {
             "type": "string",
             "x-stoplight": {
               "id": "lywjiu2vugn2r"
-            }
+            },
+            "format": "date-time"
           },
-          "updatedAt": {
+          "updated_at": {
             "type": "string",
             "x-stoplight": {
               "id": "4rp3a1mqbur6v"
-            }
+            },
+            "format": "date-time"
           },
           "nama": {
             "type": "string",
@@ -1117,40 +1340,14 @@
         },
         "required": [
           "nik",
-          "createdAt",
-          "updatedAt"
-        ],
-        "examples": [
-          {
-            "nik": "0000000000000",
-            "createdAt": "12/07/24 16:57:14",
-            "updatedAt": "12/07/24 16:57:14",
-            "nama": "Ghozali Ghozalu",
-            "jenis_kelamin": "LAKI-LAKI",
-            "alamat": "Jl. Raya",
-            "tempat_lahir": "JAKARTA",
-            "tanggal_lahir": "21-12-1990",
-            "umur": 33,
-            "gol_darah": "A",
-            "rt": "2",
-            "rw": "3",
-            "kelurahan": "JAGAKARSA",
-            "kecamatan": "JAGAKARSA",
-            "agama": "ISLAM",
-            "status": "BELUM KAWIN",
-            "pekerjaan": "PELAJAR/MAHASISWA",
-            "kewarganegaraan": "WNI",
-            "url_image_ktp": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.JPG",
-            "url_image_selfie": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.JPG",
-            "path_image_ktp": "string",
-            "path_image_selfie": "string"
-          }
+          "created_at",
+          "updated_at"
         ]
       },
       "Request": {
         "title": "Request",
         "x-stoplight": {
-          "id": "ps7fgz3z70rnl"
+          "id": "de24a1bmm37rf"
         },
         "type": "object",
         "examples": [
@@ -1163,7 +1360,7 @@
           }
         ],
         "properties": {
-          "no": {
+          "id": {
             "type": "string",
             "x-stoplight": {
               "id": "yi0uy8fj78n2m"
@@ -1180,15 +1377,17 @@
             "type": "string",
             "x-stoplight": {
               "id": "crfyxu0vf7rbn"
-            }
+            },
+            "format": "date-time"
           },
-          "createdAt": {
+          "created_at": {
             "type": "string",
             "x-stoplight": {
               "id": "iubwqr5hd39no"
-            }
+            },
+            "format": "date-time"
           },
-          "finishedAt": {
+          "finished_at": {
             "type": "string",
             "x-stoplight": {
               "id": "z01bys764let7"
@@ -1196,17 +1395,17 @@
           }
         },
         "required": [
-          "no",
+          "id",
           "jenis_permintaan",
           "jumlah_customer",
-          "createdAt",
-          "finishedAt"
+          "created_at",
+          "finished_at"
         ]
       },
       "Report": {
         "title": "Report",
         "x-stoplight": {
-          "id": "rso1l6jtjiiq0"
+          "id": "r96b1h1oordkl"
         },
         "type": "object",
         "examples": [
@@ -1225,85 +1424,94 @@
           }
         ],
         "properties": {
-          "no": {
+          "id": {
             "type": "integer",
             "x-stoplight": {
-              "id": "z7ptrp9s89fr4"
+              "id": "s8195dnnxzbkm"
             },
-            "description": "Unique, Primary Key"
+            "description": "Primary Key"
           },
-          "nik": {
+          "created_at": {
             "type": "string",
             "x-stoplight": {
-              "id": "47pk40zcm3jb8"
+              "id": "bphf6aawqi9kl"
             },
-            "description": "Foreign Key"
+            "format": "date-time"
           },
-          "nama": {
+          "finished_at": {
             "type": "string",
             "x-stoplight": {
-              "id": "e3h5io5yq040d"
-            }
-          },
-          "jenis_permintaan": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "owkrdm4ip62st"
-            }
-          },
-          "skor": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "mylsp8be9r7qy"
-            }
-          },
-          "createdAt": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "wvxotl9gh0a4l"
-            }
-          },
-          "finishedAt": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "v44rpwsdn3sg8"
-            }
-          },
-          "no_permintaan": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "novigq93l8ucy"
+              "id": "ddj2kq9d5rkxf"
             },
-            "description": "Foreign Key"
+            "format": "date-time"
           },
           "kendala_proses": {
             "type": "string",
             "x-stoplight": {
-              "id": "iz25ql73m79ef"
+              "id": "fwpmqifzig7qr"
             }
           },
-          "hasil": {
+          "status": {
             "type": "string",
             "x-stoplight": {
-              "id": "02tjgddfy10s2"
+              "id": "2kh55pswq8s2p"
             }
           },
           "pdf": {
             "type": "string",
             "x-stoplight": {
-              "id": "inpka05j1p13k"
+              "id": "arbl46l1ijkb7"
+            }
+          },
+          "skor": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "lspc3gbnjzi4b"
+            }
+          },
+          "skor_fr": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "56mrhhj1x7ku5"
+            },
+            "format": "float"
+          },
+          "skor_ocr": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "xg1x0lzlmw81z"
+            },
+            "format": "float"
+          },
+          "skor_asid": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "k144auwc0dzfl"
+            },
+            "format": "float"
+          },
+          "nik": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "3y5vdijkpv4ww"
+            }
+          },
+          "id_permintaan": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "dnf1dykvhpp2i"
             }
           }
         },
         "required": [
-          "no",
-          "nik",
-          "nama",
-          "jenis_permintaan",
+          "id",
+          "created_at",
+          "finished_at",
           "skor",
-          "createdAt",
-          "finishedAt",
-          "no_permintaan"
+          "skor_fr",
+          "skor_ocr",
+          "skor_asid",
+          "nik"
         ]
       }
     }
