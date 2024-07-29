@@ -569,7 +569,7 @@
                   "Example 1": {
                     "value": {
                       "error": true,
-                      "message": "Ekstensi gambar tidak vali"
+                      "message": "Ekstensi gambar tidak valid"
                     }
                   },
                   "Example 2": {
