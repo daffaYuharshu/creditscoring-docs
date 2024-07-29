@@ -899,7 +899,13 @@
                             "skor_ocr": 0.77,
                             "skor_asid": 0.9,
                             "nik": "000000000000",
-                            "id_permintaan": "00h12e82"
+                            "id_permintaan": "00h12e82",
+                            "person": {
+                              "nama": "Ghozali Ghozalu"
+                            },
+                            "request": {
+                              "jenis_permintaan": "AI Identity Scoring"
+                            }
                           }
                         ]
                       },
