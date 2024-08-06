@@ -178,6 +178,14 @@
             "in": "query",
             "name": "features",
             "description": "Memilih fitur cek skoring (identity)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
           }
         ],
         "requestBody": {
@@ -379,6 +387,14 @@
             "in": "query",
             "name": "current",
             "description": "Page yang dipilih untuk ditampilkan"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
           }
         ]
       },
@@ -652,7 +668,17 @@
             }
           }
         },
-        "description": "API untuk mengupload KTP dan foto selfie"
+        "description": "API untuk mengupload KTP dan foto selfie",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
+          }
+        ]
       }
     },
     "/requests": {
@@ -805,6 +831,14 @@
             "in": "query",
             "name": "current",
             "description": "Page yang dipilih untuk ditampilkan"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
           }
         ]
       }
@@ -987,6 +1021,14 @@
             "in": "query",
             "name": "nik",
             "description": "Mendapatkan data laporan berdasarkan NIK"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
           }
         ],
         "description": "API untuk mendapatkan semua data laporan"
@@ -1063,7 +1105,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
+          }
+        ]
       }
     },
     "/reports/pdf/:reportId": {
@@ -1169,7 +1221,728 @@
           }
         },
         "operationId": "get-reports-pdf-:reportId",
-        "description": "API untuk menampilkan laporan berdasarkan id laporan"
+        "description": "API untuk menampilkan laporan berdasarkan id laporan",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
+          }
+        ]
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Mendaftar User (Register)",
+        "operationId": "post-users",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "1z06gtee35fwx"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "ecg9w7mz109sw"
+                      }
+                    },
+                    "result": {
+                      "type": "object",
+                      "x-stoplight": {
+                        "id": "vau0up3oqf50w"
+                      },
+                      "properties": {
+                        "email": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "efhvm1xnb8ors"
+                          }
+                        },
+                        "role": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "u7szikdlcld7w"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": false,
+                      "message": "Akun berhasil dibuat",
+                      "result": {
+                        "email": "ghozalighozalu@gmail.com",
+                        "role": "admin"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request(Email sudah digunakan)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "von4wjud7dfrw"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "ki08o9slnf3ah"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Email sudah digunakan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden (Jika yang melalukan request bukan admin)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "is93o6ufw1j1a"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "sejjm0p1v8drq"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Anda tidak berhak mengakses resource ini"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "dev9zf7vv2dg9"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "9ceoze9zx184u"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Membuat user (Register)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "dca7v02h6m4z1"
+                    }
+                  },
+                  "password": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "1rkx89hlqwydt"
+                    }
+                  },
+                  "role": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "xohvw2rf8opcy"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "email": "ghozalighazalu@gmail.com",
+                    "password": "secret",
+                    "role": "admin"
+                  }
+                },
+                "Example 2": {
+                  "value": {
+                    "email": "ghozalighazalu@gmail.com",
+                    "password": "secret",
+                    "role": "user"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
+          }
+        ]
+      }
+    },
+    "/authentications": {
+      "post": {
+        "summary": "Login",
+        "operationId": "post-authentications",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "qi4k66tglnwa7"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "jbip9o4zce1fo"
+                      }
+                    },
+                    "data": {
+                      "type": "object",
+                      "x-stoplight": {
+                        "id": "1bwm0q2w3wl2u"
+                      },
+                      "properties": {
+                        "accessToken": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "4cu2bos4rq7ek"
+                          }
+                        },
+                        "refreshToken": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "osij47gjedm76"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 2": {
+                    "value": {
+                      "error": false,
+                      "message": "Login berhasil",
+                      "data": {
+                        "accessToken": "dwqohdnjpwihd1k",
+                        "refreshToken": "d1wdo1kmd1wjd10"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (Salah memasukkan email/password atau refresh token tidak valid)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "xnmhvp4oi2utq"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "eryt9jfdym15l"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Kredensial salah"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "00cdh2llslrz0"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "byenb0jx1ca3y"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Anda tidak berhak mengakses resource ini"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "zpm4e3dfkndoj"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "z2bl0w67cf6ey"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "API untuk login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "xpq7fpl7uwx9z"
+                    }
+                  },
+                  "password": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "95yajruze27rc"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "email": "ghozalighozalu@gmail.com",
+                    "password": "admin"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Access Token",
+        "operationId": "put-authentications",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "fbjxdo199pnkj"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "4bl5r0s748ofs"
+                      }
+                    },
+                    "data": {
+                      "type": "object",
+                      "x-stoplight": {
+                        "id": "xopm3hul4bizl"
+                      },
+                      "properties": {
+                        "accessToken": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "uxyvr2mo6c6hq"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": false,
+                      "message": "Akses token berhasil diperbarui",
+                      "data": {
+                        "accessToken": "dqwdwoiqjddqwdpqm[wdqwd"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "0t1lheqfev6pf"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "d1azg3y3cpkea"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Refresh token tidak valid"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "zcczx8b5xk3e9"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "1ma9t6eucd5qt"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Anda tidak berhak mengakses resource ini"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "musgtdtv2aycv"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "g4nddzqga0n6a"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "API untuk mengupdate akses token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refreshToken": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "zh2b9ie30w2z8"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "refreshToken": "dqwdjpqjdpqhdpqhdp9"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Logout",
+        "operationId": "delete-authentications",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "vr2dvwiyvs0hl"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "jqezv25odfnw6"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": false,
+                      "message": "Logout berhasil"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "df5z5va6vp7sf"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "v184npjfkfalg"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Refresh token tidak valid"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "crm84ub45dlv6"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "9equir7vum8bl"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "API untuk logout",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refreshToken": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "fnyegnrk1wr5i"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "refreshToken": "dwqodjpqwdhj9qwpdwq"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
