@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "x-stoplight": {
-    "id": "18stl2tq0rk4l"
+    "id": "fi8s4ycywtzuq"
   },
   "info": {
     "title": "Credit Scoring API",
@@ -395,6 +395,30 @@
             "in": "header",
             "name": "Bearer Token",
             "description": "token untuk mengakses resource"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "reports",
+            "description": "Menampilkan data person yang memiliki data reports (Bernilai \"true\" atau \"false\") Default \"false\" "
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "nik",
+            "description": "Filter berdasarkan NIK"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "nama",
+            "description": "Filter berdasarkan nama"
           }
         ]
       },
@@ -839,6 +863,14 @@
             "in": "header",
             "name": "Bearer Token",
             "description": "token untuk mengakses resource"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "permintaan",
+            "description": "Filter berdasarkan  jenis permintaan (Ai Identity Scoring, dll)"
           }
         ]
       }
@@ -1951,7 +1983,7 @@
       "Person": {
         "title": "Person",
         "x-stoplight": {
-          "id": "pmcub5q0slt9m"
+          "id": "iv0sflfytqxzq"
         },
         "type": "object",
         "examples": [
@@ -2126,7 +2158,7 @@
       "Request": {
         "title": "Request",
         "x-stoplight": {
-          "id": "de24a1bmm37rf"
+          "id": "9lif42epwxjf2"
         },
         "type": "object",
         "examples": [
@@ -2184,7 +2216,7 @@
       "Report": {
         "title": "Report",
         "x-stoplight": {
-          "id": "r96b1h1oordkl"
+          "id": "uzghekokn2sj2"
         },
         "type": "object",
         "examples": [
