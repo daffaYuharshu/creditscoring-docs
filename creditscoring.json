@@ -1523,6 +1523,12 @@
                           "x-stoplight": {
                             "id": "osij47gjedm76"
                           }
+                        },
+                        "expiresIn": {
+                          "type": "integer",
+                          "x-stoplight": {
+                            "id": "rzdf0jwjvkycw"
+                          }
                         }
                       }
                     }
@@ -1535,7 +1541,8 @@
                       "message": "Login berhasil",
                       "data": {
                         "accessToken": "dwqohdnjpwihd1k",
-                        "refreshToken": "d1wdo1kmd1wjd10"
+                        "refreshToken": "d1wdo1kmd1wjd10",
+                        "expiresIn": 900
                       }
                     }
                   }
@@ -1707,6 +1714,12 @@
                           "x-stoplight": {
                             "id": "uxyvr2mo6c6hq"
                           }
+                        },
+                        "expiresIn": {
+                          "type": "integer",
+                          "x-stoplight": {
+                            "id": "akgaf05afrzb7"
+                          }
                         }
                       }
                     }
@@ -1718,7 +1731,8 @@
                       "error": false,
                       "message": "Akses token berhasil diperbarui",
                       "data": {
-                        "accessToken": "dqwdwoiqjddqwdpqm[wdqwd"
+                        "accessToken": "dqwdwoiqjddqwdpqm[wdqwd",
+                        "expiresIn": 900
                       }
                     }
                   }
