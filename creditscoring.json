@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "x-stoplight": {
-    "id": "fi8s4ycywtzuq"
+    "id": "5zaujqqzkuv7c"
   },
   "info": {
     "title": "Credit Scoring API",
@@ -1067,13 +1067,12 @@
       }
     },
     "/reports/pdf": {
-      "get": {
+      "post": {
         "summary": "Mendownload Laporan PDF yang dipilih",
-        "tags": [],
+        "operationId": "post-reports-pdf",
         "responses": {
           "200": {
-            "description": "OK (Mendownload semua file laporan kedalam zip)",
-            "content": {}
+            "description": "OK (Mendownload semua file laporan kedalam zip)"
           },
           "500": {
             "description": "Internal Server Error",
@@ -1085,13 +1084,13 @@
                     "error": {
                       "type": "boolean",
                       "x-stoplight": {
-                        "id": "y5yza975xohjh"
+                        "id": "6v60xuimhoal2"
                       }
                     },
-                    "": {
+                    "message": {
                       "type": "string",
                       "x-stoplight": {
-                        "id": "gy7nk7z5yzcd3"
+                        "id": "n8aztr8w70mrk"
                       }
                     }
                   }
@@ -1108,8 +1107,17 @@
             }
           }
         },
-        "operationId": "get-reports-pdf",
         "description": "API untuk mendownload laporan yang dipilih",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1119,14 +1127,14 @@
                   "arrayOfIdReport": {
                     "type": "array",
                     "x-stoplight": {
-                      "id": "rvg7h59nak7in"
+                      "id": "vm6ujnfuwqs0w"
                     },
                     "items": {}
                   }
                 }
               },
               "examples": {
-                "Example 2": {
+                "Example 1": {
                   "value": {
                     "arrayOfIdReport": [
                       "1",
@@ -1137,17 +1145,7 @@
               }
             }
           }
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "Bearer Token",
-            "description": "token untuk mengakses resource"
-          }
-        ]
+        }
       }
     },
     "/reports/pdf/:reportId": {
@@ -1482,7 +1480,7 @@
         ]
       }
     },
-    "/authentications": {
+    "/authentication": {
       "post": {
         "summary": "Login",
         "operationId": "post-authentications",
@@ -1989,7 +1987,8 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     }
   },
   "components": {
@@ -1997,7 +1996,7 @@
       "Person": {
         "title": "Person",
         "x-stoplight": {
-          "id": "iv0sflfytqxzq"
+          "id": "lc6lvios8tcwq"
         },
         "type": "object",
         "examples": [
@@ -2172,7 +2171,7 @@
       "Request": {
         "title": "Request",
         "x-stoplight": {
-          "id": "9lif42epwxjf2"
+          "id": "134irea6ffmzc"
         },
         "type": "object",
         "examples": [
@@ -2230,7 +2229,7 @@
       "Report": {
         "title": "Report",
         "x-stoplight": {
-          "id": "uzghekokn2sj2"
+          "id": "t6o66qhfe5ew3"
         },
         "type": "object",
         "examples": [
