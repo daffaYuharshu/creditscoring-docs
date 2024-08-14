@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "x-stoplight": {
-    "id": "5zaujqqzkuv7c"
+    "id": "6uiblmbbfeca6"
   },
   "info": {
     "title": "Credit Scoring API",
@@ -1996,11 +1996,12 @@
       "Person": {
         "title": "Person",
         "x-stoplight": {
-          "id": "lc6lvios8tcwq"
+          "id": "uvtdks6gfui8v"
         },
         "type": "object",
         "examples": [
           {
+            "id": 1,
             "nik": "0000000000000",
             "createdAt": "12/07/24 16:57:14",
             "updatedAt": "12/07/24 16:57:14",
@@ -2022,16 +2023,23 @@
             "url_image_ktp": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.JPG",
             "url_image_selfie": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.JPG",
             "path_image_ktp": "string",
-            "path_image_selfie": "string"
+            "path_image_selfie": "string",
+            "owner": 3
           }
         ],
         "properties": {
+          "id": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "gjbcrjyfjvd15"
+            },
+            "description": "Unique, Primary Key"
+          },
           "nik": {
             "type": "string",
             "x-stoplight": {
               "id": "ku7bzzv9ozmen"
-            },
-            "description": "Unique, Primary Key"
+            }
           },
           "created_at": {
             "type": "string",
@@ -2160,27 +2168,37 @@
             "x-stoplight": {
               "id": "l2bj0bqlqtzxx"
             }
+          },
+          "owner": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "7fhkrd8rseaqu"
+            },
+            "description": "Foreign key"
           }
         },
         "required": [
+          "id",
           "nik",
           "created_at",
-          "updated_at"
+          "updated_at",
+          "owner"
         ]
       },
       "Request": {
         "title": "Request",
         "x-stoplight": {
-          "id": "134irea6ffmzc"
+          "id": "ixo9fv3awy07i"
         },
         "type": "object",
         "examples": [
           {
-            "no": "00udqw1",
+            "id": "00udqw1",
             "jenis_permintaan": "AI Identity Scoring",
-            "jumlah_customer": "2",
+            "jumlah_customer": 2,
             "createdAt": "12/07/24 16:57:14",
-            "finishedAt": "12/07/24 16:57:14"
+            "finishedAt": "12/07/24 16:57:14",
+            "owner": 1
           }
         ],
         "properties": {
@@ -2198,7 +2216,7 @@
             }
           },
           "jumlah_customer": {
-            "type": "string",
+            "type": "integer",
             "x-stoplight": {
               "id": "crfyxu0vf7rbn"
             },
@@ -2215,7 +2233,15 @@
             "type": "string",
             "x-stoplight": {
               "id": "z01bys764let7"
-            }
+            },
+            "format": "date-time"
+          },
+          "owner": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "xs22i785afx4d"
+            },
+            "description": "Foreign key"
           }
         },
         "required": [
@@ -2229,22 +2255,24 @@
       "Report": {
         "title": "Report",
         "x-stoplight": {
-          "id": "t6o66qhfe5ew3"
+          "id": "14n7rmmcsj1gk"
         },
         "type": "object",
         "examples": [
           {
-            "no": 1,
-            "nik": "000000000000",
-            "nama": "Ghozali Ghozalu",
-            "jenis_permintaan": "AI Identity Scoring",
-            "skor": "Sangat Baik",
+            "id": 1,
             "createdAt": "12/07/24 16:57:14",
             "finishedAt": "12/07/24 16:57:14",
-            "no_permintaan": "00h12e82",
             "kendala_proses": "-",
             "status": "Selesai",
-            "pdf": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.pdf"
+            "pdf": "http://localhost:3000/images/d7d0e85dc58803953bd2c2b4c2dd76aa.pdf",
+            "skor": "Sangat Baik",
+            "skor_fr": 0.8,
+            "skor_ocr": 0.7,
+            "skor_asid": 0.76,
+            "id_person": 3,
+            "id_permintaan": "00h12e82",
+            "owner": 2
           }
         ],
         "properties": {
@@ -2314,17 +2342,26 @@
             },
             "format": "float"
           },
-          "nik": {
-            "type": "string",
+          "id_person": {
+            "type": "integer",
             "x-stoplight": {
-              "id": "3y5vdijkpv4ww"
-            }
+              "id": "czd1d6lvl90pl"
+            },
+            "description": "Foreign Key"
           },
           "id_permintaan": {
             "type": "string",
             "x-stoplight": {
               "id": "dnf1dykvhpp2i"
-            }
+            },
+            "description": "Foreign Key"
+          },
+          "owner": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "ecjsincuvzvh5"
+            },
+            "description": "Foreign Key"
           }
         },
         "required": [
@@ -2335,7 +2372,97 @@
           "skor_fr",
           "skor_ocr",
           "skor_asid",
-          "nik"
+          "id_person",
+          "owner"
+        ]
+      },
+      "User": {
+        "title": "User",
+        "x-stoplight": {
+          "id": "yc1se0nz1mqe3"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Primary Key"
+          },
+          "email": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "chihqxqm32923"
+            }
+          },
+          "password": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "q6ahjritgsiks"
+            }
+          },
+          "role": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "xtxpjqg6mhf4i"
+            },
+            "description": "admin atau user"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "password",
+          "role"
+        ],
+        "examples": [
+          {
+            "id": 0,
+            "email": "ghozalighozalu@gmail.com",
+            "password": "tebakkatasandi",
+            "role": "user"
+          }
+        ]
+      },
+      "Authentication": {
+        "title": "Authentication",
+        "x-stoplight": {
+          "id": "ha8nah0636fzw"
+        },
+        "type": "object",
+        "examples": [
+          {
+            "id": 0,
+            "user_agent": "PostmanRuntime/7.41.1",
+            "ip_address": "::1",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJFbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTcyMzYxNzUyOSwiZXhwIjoxNzIzNzAzOTI5fQ.gf0Dee7bjNnK9rWsI7FXVHVE78th-8Lg1bUwUosbUDA"
+          }
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Primary Key, Unique"
+          },
+          "user_agent": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "p1vr6sr134w4m"
+            }
+          },
+          "ip_address": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ouprllita2iau"
+            }
+          },
+          "token": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "y5ewmnuoqkvt3"
+            },
+            "description": "Unique"
+          }
+        },
+        "required": [
+          "id"
         ]
       }
     }
