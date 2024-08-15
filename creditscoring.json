@@ -104,6 +104,78 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized (Jika token kadaluarsa atau tidak dilampirkan)",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "sc9ezj8w1jt53"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "tve9707grw5rp"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Unauthorized"
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "error": true,
+                      "message": "jwt expired"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden (Jika user mengakses resource yang bukan haknya)",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "jt05jmeybyj64"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "okt51g98ym25k"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Anda tidak berhak mengakses resource ini"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "404": {
             "description": "Not Found (NIK tidak ditemukan)",
             "content": {
@@ -336,6 +408,38 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized (Jika token tidak dilampirkan atau token kadaluarsa)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "a0806c9vqu3kf"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "razheiwln6978"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "jwt expired"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "content": {
@@ -514,6 +618,38 @@
                     "value": {
                       "error": true,
                       "message": "KTP atau Foto belum diupload"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (Jika token tidak dilampirkan atau token kadaluarsa)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "p1jq1qvcb8fth"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "cgmx1pq7zstsj"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "jwt expired"
                     }
                   }
                 }
@@ -804,6 +940,38 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized (Jika token tidak dilampirkan atau token kadaluarsa)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "f8ftkcu7vg0v1"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "1sttol7raoob7"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "jwt expired"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "content": {
@@ -987,6 +1155,38 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized (Jika token tidak lampirkan atau token kadaluarsa)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "dpj92uodi1kh8"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "pjlw4lzp70u0c"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "jwt expired"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "content": {
@@ -1073,6 +1273,70 @@
         "responses": {
           "200": {
             "description": "OK (Mendownload semua file laporan kedalam zip)"
+          },
+          "401": {
+            "description": "Unauthorized (Jika token tidak dilampirkan dan token kadaluarsa)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "m73frr095kh34"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "8z6meyqf2ic2k"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "jwt expired"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden (Jika user mengakses report yang bukan haknya)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "042nzkfwepfv7"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "ict6f8gtni3ah"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Anda tidak berhak mengakses resource ini"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error",
@@ -1185,6 +1449,70 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized (Jika token kadaluarsa atau tidak dilampirkan)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "c53lo8p492c08"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "qx0xgcdydwv0x"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "jwt expired"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden (Jika user mengakses resource yang bukan haknya)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "5upub6bkvdgyh"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "tv18ji54kth4b"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Anda tidak berhak mengakses resource ini"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "404": {
             "description": "Not Found",
             "content": {
@@ -1261,7 +1589,10 @@
             "name": "Bearer Token",
             "description": "token untuk mengakses resource"
           }
-        ]
+        ],
+        "requestBody": {
+          "content": {}
+        }
       }
     },
     "/users": {
@@ -1351,6 +1682,38 @@
                     "value": {
                       "error": true,
                       "message": "Email sudah digunakan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (Jika token kadaluarsa atau tidak dilampirkan)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "iswlha55er9qf"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "nzporjipzlj8j"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "jwt expired"
                     }
                   }
                 }
