@@ -249,7 +249,7 @@
             },
             "in": "query",
             "name": "features",
-            "description": "Memilih fitur cek skoring (identity)"
+            "description": "Memilih fitur cek skoring (contoh: identity)"
           },
           {
             "schema": {
@@ -1038,7 +1038,7 @@
             },
             "in": "query",
             "name": "permintaan",
-            "description": "Filter berdasarkan  jenis permintaan (Ai Identity Scoring, dll)"
+            "description": "Filter berdasarkan  jenis permintaan (contoh: Ai Identity Scoring, dll)"
           }
         ]
       }
