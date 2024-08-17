@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "x-stoplight": {
-    "id": "6uiblmbbfeca6"
+    "id": "s6xw0hkrzsriw"
   },
   "info": {
     "title": "Credit Scoring API",
@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "http://localhost:80"
     }
   ],
   "paths": {
@@ -657,7 +657,7 @@
             }
           },
           "404": {
-            "description": "Not Found (\"Gambar tidak ditemukan setelah diupload\")",
+            "description": "Not Found (Gambar tidak ditemukan setelah diupload)",
             "content": {
               "application/json": {
                 "schema": {
@@ -1430,10 +1430,18 @@
                         "id": "ttnn68gov1kvu"
                       }
                     },
-                    "message": {
-                      "type": "string",
+                    "data": {
+                      "type": "object",
                       "x-stoplight": {
-                        "id": "i4023logdlhny"
+                        "id": "inv4py48qwhcb"
+                      },
+                      "properties": {
+                        "pdfUrl": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "f7l1z9fflm5x0"
+                          }
+                        }
                       }
                     }
                   }
@@ -1442,7 +1450,9 @@
                   "Example 1": {
                     "value": {
                       "error": false,
-                      "message": "File PDF berhasil ditampilkan"
+                      "data": {
+                        "pdfUrl": "http://localhost:80/pdf/reports/1-Ghozali Ghozalu-AI Credits Scoring.pdf"
+                      }
                     }
                   }
                 }
@@ -1792,6 +1802,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "username": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "gvk12opxcw9w5"
+                    }
+                  },
                   "email": {
                     "type": "string",
                     "x-stoplight": {
@@ -1810,11 +1826,18 @@
                       "id": "xohvw2rf8opcy"
                     }
                   }
-                }
+                },
+                "required": [
+                  "username",
+                  "email",
+                  "password",
+                  "role"
+                ]
               },
               "examples": {
                 "Example 1": {
                   "value": {
+                    "username": "Ghozali aja",
                     "email": "ghozalighazalu@gmail.com",
                     "password": "secret",
                     "role": "admin"
@@ -1841,6 +1864,384 @@
             "description": "token untuk mengakses resource"
           }
         ]
+      },
+      "get": {
+        "summary": "Mendapatkan Data User",
+        "operationId": "get-users",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "old1jtx0ntiva"
+                      }
+                    },
+                    "data": {
+                      "type": "object",
+                      "x-stoplight": {
+                        "id": "ydeetsj5el2p2"
+                      },
+                      "properties": {
+                        "id": {
+                          "type": "number",
+                          "x-stoplight": {
+                            "id": "cyw41ddgv5w46"
+                          }
+                        },
+                        "username": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "rvw6ljrtfkjnk"
+                          }
+                        },
+                        "email": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "wrwyybqxo5dq4"
+                          }
+                        },
+                        "role": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "7io2jh4duaikq"
+                          }
+                        },
+                        "img_profile": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "yqginwk1hs5rq"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": false,
+                      "data": {
+                        "id": 1,
+                        "username": "Ghozali Aja",
+                        "email": "ghozalighozalu@gmail.com",
+                        "role": "admin",
+                        "img_profile": null
+                      }
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "error": false,
+                      "data": {
+                        "id": 1,
+                        "username": "Ghozali Aja",
+                        "email": "ghozalighozalu@gmail.com",
+                        "role": "admin",
+                        "img_profile": "http://localhost:80/images/profile/foto1.jpg"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (Jika token kadaluarsa atau tidak dilampirkan)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "7n8e2bg05ygw4"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "8gwxhudc6mtxu"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "c20oy3ijke4zy"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "spzo80nt23s7l"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
+          }
+        ],
+        "description": "API untuk mendapatkan data user yang sedang login"
+      },
+      "patch": {
+        "summary": "Mengupdate User Profile (username atau img_profile)",
+        "operationId": "patch-users",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "77ngtvmf6whav"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "ehwo87ygol6jh"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": false,
+                      "message": "Profil berhasil diperbarui"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (Jika token tidak dilampirkan atau token kadaluarsa)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "f7v9074gw51f5"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "yz238oexieq96"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "jwt expired"
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "error": true,
+                      "message": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found (Gambar tidak ditemukan setelah diupload)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "r3d9i7wksj34o"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "9fw6r1szsm3om"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Gambar tidak ditemukan setelah diupload"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity (WebDAV)(Ekstensi gambar tidak valid / Ukuran gambar harus lebih kecil dari 1 MB)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "81dlfu5hmr883"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "qm3x05n16db2y"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Ekstensi gambar tidak valid"
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "error": true,
+                      "message": "Ukuran gambar harus lebih kecil dari 1 MB"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "4c4seh5d3gkju"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "0a6zamuvix54e"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": true,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "API untuk mengedit username atau img_profile user",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Bearer Token",
+            "description": "token untuk mengakses resource"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "sz3d2uxlh3fzu"
+                    },
+                    "description": "Type: Text"
+                  },
+                  "image": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "mvrpcstpx9ag5"
+                    },
+                    "description": "Type: File"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
       }
     },
     "/authentication": {
@@ -2359,7 +2760,7 @@
       "Person": {
         "title": "Person",
         "x-stoplight": {
-          "id": "uvtdks6gfui8v"
+          "id": "2z5pt6qlsdnrf"
         },
         "type": "object",
         "examples": [
@@ -2551,7 +2952,7 @@
       "Request": {
         "title": "Request",
         "x-stoplight": {
-          "id": "ixo9fv3awy07i"
+          "id": "tlmg43bwy47w1"
         },
         "type": "object",
         "examples": [
@@ -2618,7 +3019,7 @@
       "Report": {
         "title": "Report",
         "x-stoplight": {
-          "id": "14n7rmmcsj1gk"
+          "id": "2boevd2af38tf"
         },
         "type": "object",
         "examples": [
@@ -2742,19 +3143,34 @@
       "User": {
         "title": "User",
         "x-stoplight": {
-          "id": "yc1se0nz1mqe3"
+          "id": "bgz7jhkysq97o"
         },
         "type": "object",
+        "examples": [
+          {
+            "id": 0,
+            "email": "ghozalighozalu@gmail.com",
+            "password": "tebakkatasandi",
+            "role": "user"
+          }
+        ],
         "properties": {
           "id": {
             "type": "integer",
             "description": "Primary Key"
           },
+          "username": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "f3we5gqz22e2g"
+            }
+          },
           "email": {
             "type": "string",
             "x-stoplight": {
               "id": "chihqxqm32923"
-            }
+            },
+            "description": "Unique"
           },
           "password": {
             "type": "string",
@@ -2768,27 +3184,26 @@
               "id": "xtxpjqg6mhf4i"
             },
             "description": "admin atau user"
+          },
+          "img_profile": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "bw3anfef8azch"
+            }
           }
         },
         "required": [
           "id",
+          "username",
           "email",
           "password",
           "role"
-        ],
-        "examples": [
-          {
-            "id": 0,
-            "email": "ghozalighozalu@gmail.com",
-            "password": "tebakkatasandi",
-            "role": "user"
-          }
         ]
       },
       "Authentication": {
         "title": "Authentication",
         "x-stoplight": {
-          "id": "ha8nah0636fzw"
+          "id": "bhdyemmurgxh9"
         },
         "type": "object",
         "examples": [
